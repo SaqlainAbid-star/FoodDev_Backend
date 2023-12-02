@@ -4,9 +4,11 @@ const cors = require("cors");
 const main = require("./models/connection");
 const path = require("path");
 
-
+// Parse incoming requests with JSON payloads.
 app.use(express.json());
 
+// Cross-Origin Resource Sharing (CORS) is a security feature to prevent unauthorized requests from different origins.
+// Enable Cross-Origin Resource Sharing (CORS) to allow requests from different origins.
 app.use(
   cors({
     origin: "*",
@@ -14,6 +16,8 @@ app.use(
   })
 ); // use cors middleware for all routes
 
+
+// Parse incoming requests with URL-encoded data.
 app.use(
   express.urlencoded({
     extended: true,
@@ -31,7 +35,7 @@ main();
 require("dotenv").config();
 
 app.get("/", (req, res) => {
-  res.send("Server running");
+  res.send("Server Running");
 });
 
 app.use("/api", require("./routes/userRoute"));
