@@ -1,15 +1,9 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-
 const main = require("./models/connection");
 const path = require("path");
 
-// Allow access to uploaded files by serving them statically from the "uploads" directory.
-app.use("/uploads", express.static("uploads"));       // http://localhost:8000/uploads/tikka.png
-// app.use(express.static(path.join(process.cwd(), "public")));    
-
-main();
 
 app.use(express.json());
 
@@ -29,6 +23,13 @@ app.use(
     extended: true,
   })
 );
+
+// Allow access to uploaded files by serving them statically from the "uploads" directory.
+app.use("/uploads", express.static("uploads"));       // http://localhost:8000/uploads/tikka.png
+// app.use(express.static(path.join(process.cwd(), "public")));    
+
+main();
+
 
 // Load environment variables from the .env file using the dotenv package.
 require("dotenv").config();
