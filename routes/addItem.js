@@ -5,11 +5,27 @@ const cors = require("cors");
 const router = express.Router();
 const path = require("path");
 const { addItem } = require("../controllers/productController");
-
 const app = express();
-app.use(cors());
+
+
+// app.use(cors());
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: false }));
+
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+
+app.use(
+  cors({
+    origin: "*",
+    credentials: true,
+  })
+); // use cors middleware for all routes
+
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
 
 app.use("/uploads", express.static("uploads"));
 // router.use(express.static(__dirname + "./public/"));
